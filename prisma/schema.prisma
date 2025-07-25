@@ -13,16 +13,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
 model User {
-  id            String    @id
+  id            String     @id
   name          String
   email         String
   emailVerified Boolean
   image         String?
   createdAt     DateTime
   updatedAt     DateTime
+  role          Role       @default(ADMIN) // Agregado
+  phone         String? // Agregado
   sessions      Session[]
   accounts      Account[]
+  movements     Movement[] // ✅ Relación inversa agregada
 
   @@unique([email])
   @@map("user")
@@ -60,6 +68,15 @@ model Account {
   updatedAt             DateTime
 
   @@map("account")
+}
+
+model Movement {
+  id      Int      @id @default(autoincrement())
+  concept String
+  amount  Float
+  date    DateTime
+  user    User     @relation(fields: [userId], references: [id])
+  userId  String
 }
 
 model Verification {

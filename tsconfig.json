@@ -12,10 +12,11 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "target": "esnext",
+    "baseUrl": ".",                      // ✅ Agrega esta línea
     "paths": {
       "@/*": ["./*"]
-    },
-    "target": "esnext"
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
