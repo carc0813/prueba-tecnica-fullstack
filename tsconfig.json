@@ -13,7 +13,7 @@
     "jsx": "preserve",
     "incremental": true,
     "target": "esnext",
-    "baseUrl": ".",                      // ✅ Agrega esta línea
+    "baseUrl": ".", // ✅ Agrega esta línea
     "paths": {
       "@/*": ["./*"]
     }

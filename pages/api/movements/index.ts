@@ -3,7 +3,10 @@ import { prisma } from '@/lib/prisma'; // ✅ CORRECTO
 import { getSession } from '@/lib/auth-session';
 import { requireRole } from '@/lib/rbac';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const session = await getSession(req, res);
 
   if (!session) return res.status(401).json({ error: 'Unauthorized' });
@@ -39,4 +42,3 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   res.setHeader('Allow', ['GET', 'POST']);
   return res.status(405).end(`Method ${req.method} Not Allowed`);
 }
-

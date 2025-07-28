@@ -1,7 +1,7 @@
 // lib/auth.ts
 import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
-import { PrismaClient,Role} from '@prisma/client';
+import { PrismaClient, Role } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -20,11 +20,10 @@ export const auth = betterAuth({
     async onCreateUser({ id }: { id: string }) {
       await prisma.user.update({
         where: { id },
-        data: { role:Role.ADMIN },
+        data: { role: Role.ADMIN },
       });
     },
   },
 });
 
 export type Session = typeof auth.$Infer.Session;
-

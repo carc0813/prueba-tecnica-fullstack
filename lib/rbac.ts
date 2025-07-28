@@ -1,7 +1,5 @@
 import { Session } from 'better-auth';
 
-
-
 export function requireRole(session: Session | null, role: 'ADMIN' | 'USER') {
   if (!session) {
     throw new Error('Unauthorized');
